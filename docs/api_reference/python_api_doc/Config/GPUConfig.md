@@ -62,6 +62,9 @@ print("GPU device id is: {}".format(config.gpu_device_id())) # 0
 config.disable_gpu()
 # 通过 API 获取 GPU 信息
 print("Use GPU is: {}".format(config.use_gpu())) # False
+
+# 启用 GPU FP16 计算精度进行预测
+config.enable_use_gpu(100, 0, paddle_infer.PrecisionType.Half)
 ```
 
 ## TensorRT 设置

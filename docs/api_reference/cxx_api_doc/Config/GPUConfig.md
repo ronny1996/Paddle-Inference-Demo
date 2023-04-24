@@ -12,8 +12,9 @@ API定义如下：
 // 启用 GPU 进行预测
 // 参数：memory_pool_init_size_mb - 初始化分配的gpu显存，以MB为单位
 //      device_id - 设备id
+//      precision - 指定推理精度
 // 返回：None
-void EnableUseGpu(uint64_t memory_pool_init_size_mb, int device_id = 0);
+void EnableUseGpu(uint64_t memory_pool_init_size_mb, int device_id = 0, Precision precision = Precision::kFloat32);
 
 // 禁用 GPU 进行预测
 // 参数：None
@@ -69,6 +70,9 @@ std::cout << "GPU device id is: " << config.gpu_device_id() << std::endl;
 config.DisableGpu();
 // 通过 API 获取 GPU 信息
 std::cout << "Use GPU is: " << config.use_gpu() << std::endl; // false
+
+// 启用 GPU FP16 计算精度进行预测
+config.EnableUseGpu(100, 0, PrecisionType::kHalf);
 ```
 
 开启多线程流代码示例：
